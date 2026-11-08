@@ -1,4 +1,46 @@
-<!-- 1) Substitueix la taula de l'índex per aquesta -->
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 2 · Gestió de programari i usuaris</title>
+<style>
+  :root { --fons:#fff; --text:#1f2430; --accent:#0b5fff; --suau:#f3f5f9; --vora:#d9dee8; }
+  @media (prefers-color-scheme: dark) { :root { --fons:#14171f; --text:#e6e9f0; --accent:#7aa7ff; --suau:#1d212b; --vora:#2e3442; } }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--fons); color:var(--text); line-height:1.6; }
+  header.nav { background:#14171f; padding:12px 24px; display:flex; flex-wrap:wrap; gap:20px; }
+  header.nav a { color:#fff; text-decoration:none; font-weight:600; }
+  header.nav a:hover { text-decoration:underline; }
+  main { max-width:960px; margin:0 auto; padding:24px 20px 48px; }
+  a { color:var(--accent); }
+  .molla { font-size:.9rem; margin-bottom:8px; }
+  h1 { margin:.2em 0; }
+  h2 { margin-top:2.2em; padding-bottom:.2em; border-bottom:2px solid var(--vora); }
+  h3 { margin-top:1.8em; }
+  h4 { margin:1.4em 0 .4em; }
+  table { border-collapse:collapse; margin:12px 0; }
+  th,td { border:1px solid var(--vora); padding:6px 14px; text-align:left; }
+  th { background:var(--suau); }
+  pre { background:var(--suau); border:1px solid var(--vora); border-radius:8px; padding:12px 14px; overflow-x:auto; }
+  code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.92em; }
+  figure { margin:14px 0; }
+  figure img { border:1px solid var(--vora); border-radius:6px; }
+  figcaption { font-size:.88rem; opacity:.75; margin-top:4px; }
+  footer { border-top:1px solid var(--vora); margin-top:40px; padding-top:16px; font-size:.9rem; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <a href="../index.html">Portada</a>
+  <a href="../sprints.html">Ubuntu</a>
+  <a href="../sprints_windows.html">Windows</a>
+  <a href="https://github.com/iker478ms/sistemes_operatius">Codi a GitHub ↗</a>
+</header>
+<main>
+<p class="molla"><a href="../index.html">Portada</a> / <a href="../sprints.html">Ubuntu</a> / Sprint 2</p>
+<h1>Sprint 2 · Gestió de programari i usuaris</h1>
+<h2 id="index-apartats" style="border:none;margin-top:1em;font-size:1.1rem;">Índex d'apartats d'aquest sprint</h2>
 <table>
   <thead><tr><th>#</th><th>Apartat</th></tr></thead>
   <tbody>
@@ -8,8 +50,6 @@
   </tbody>
 </table>
 
-<!-- 2) Substitueix els apartats d'exemple (Lorem ipsum) per tot això -->
-
 <h2 id="apartat1">1. Tipus de formateig i recuperació de dades</h2>
 <p>Pràctica amb PhotoRec: es crea un disc virtual, es formata, es recuperen els fitxers i es comprova la diferència entre un formateig ràpid i un esborrat de baix nivell.</p>
 
@@ -18,7 +58,7 @@
 <p>PhotoRec ve inclòs dins el paquet <strong>testdisk</strong>.</p>
 <pre><code>sudo apt install testdisk</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-0-1-instal-lacio.png" alt="Instal·lació del paquet testdisk amb apt" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-0-1-instal-lacio.png" alt="Instal·lació del paquet testdisk amb apt" style="max-width:100%;height:auto;">
   <figcaption>Instal·lació del paquet testdisk amb apt</figcaption>
 </figure>
 
@@ -27,7 +67,7 @@
 cd ~/practica
 pwd</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-0-2-carpeta.png" alt="Creació i accés a la carpeta ~/practica" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-0-2-carpeta.png" alt="Creació i accés a la carpeta ~/practica" style="max-width:100%;height:auto;">
   <figcaption>Creació i accés a la carpeta ~/practica</figcaption>
 </figure>
 
@@ -36,15 +76,15 @@ pwd</code></pre>
 <pre><code>echo "El meu secret és que m'encanta la pizza amb pinya" &gt; notes.txt
 ls -l</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-0-3-explorador.png" alt="Els tres fitxers de prova a l'explorador de fitxers" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-0-3-explorador.png" alt="Els tres fitxers de prova a l'explorador de fitxers" style="max-width:100%;height:auto;">
   <figcaption>Els tres fitxers de prova a l'explorador de fitxers</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/formateig-0-3-echo.png" alt="Creació de notes.txt amb echo" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-0-3-echo.png" alt="Creació de notes.txt amb echo" style="max-width:100%;height:auto;">
   <figcaption>Creació de notes.txt amb echo</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/formateig-0-3-ls.png" alt="Llistat dels fitxers amb ls -l" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-0-3-ls.png" alt="Llistat dels fitxers amb ls -l" style="max-width:100%;height:auto;">
   <figcaption>Llistat dels fitxers amb ls -l</figcaption>
 </figure>
 
@@ -53,14 +93,14 @@ ls -l</code></pre>
 <p>Es crea un fitxer de 200 MB ple de zeros que farà de disc.</p>
 <pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 status=progress</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-1-1-dd.png" alt="Creació de disc.img amb dd" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-1-1-dd.png" alt="Creació de disc.img amb dd" style="max-width:100%;height:auto;">
   <figcaption>Creació de disc.img amb dd</figcaption>
 </figure>
 
 <h4>1.2 Comprovar que existeix</h4>
 <pre><code>ls -lh disc.img</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-1-2-ls.png" alt="disc.img de 200M" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-1-2-ls.png" alt="disc.img de 200M" style="max-width:100%;height:auto;">
   <figcaption>disc.img de 200M</figcaption>
 </figure>
 
@@ -68,7 +108,7 @@ ls -l</code></pre>
 <h4>2.1 Donar format al disc</h4>
 <pre><code>mkfs.ext4 disc.img</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-2-1-mkfs.png" alt="Formateig del disc amb ext4" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-2-1-mkfs.png" alt="Formateig del disc amb ext4" style="max-width:100%;height:auto;">
   <figcaption>Formateig del disc amb ext4</figcaption>
 </figure>
 
@@ -76,7 +116,7 @@ ls -l</code></pre>
 <pre><code>sudo mkdir -p /mnt/prova
 sudo mount -o loop disc.img /mnt/prova</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-2-2-mount.png" alt="Muntatge del disc a /mnt/prova" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-2-2-mount.png" alt="Muntatge del disc a /mnt/prova" style="max-width:100%;height:auto;">
   <figcaption>Muntatge del disc a /mnt/prova</figcaption>
 </figure>
 
@@ -84,7 +124,7 @@ sudo mount -o loop disc.img /mnt/prova</code></pre>
 <pre><code>sudo cp foto.jpg apunts.pdf notes.txt /mnt/prova/
 ls -l /mnt/prova</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-2-3-cp.png" alt="Còpia dels fitxers al disc muntat" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-2-3-cp.png" alt="Còpia dels fitxers al disc muntat" style="max-width:100%;height:auto;">
   <figcaption>Còpia dels fitxers al disc muntat</figcaption>
 </figure>
 
@@ -93,14 +133,14 @@ ls -l /mnt/prova</code></pre>
 <pre><code>sha256sum foto.jpg apunts.pdf notes.txt &gt; originals.sha
 cat originals.sha</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-2-4-sha256.png" alt="Hashos SHA-256 dels originals" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-2-4-sha256.png" alt="Hashos SHA-256 dels originals" style="max-width:100%;height:auto;">
   <figcaption>Hashos SHA-256 dels originals</figcaption>
 </figure>
 
 <h4>2.5 Desmuntar el disc</h4>
 <pre><code>sudo umount /mnt/prova</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-2-5-umount.png" alt="Desmuntatge del disc" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-2-5-umount.png" alt="Desmuntatge del disc" style="max-width:100%;height:auto;">
   <figcaption>Desmuntatge del disc</figcaption>
 </figure>
 
@@ -108,7 +148,7 @@ cat originals.sha</code></pre>
 <h4>3.1 Tornar a formatar</h4>
 <pre><code>mkfs.ext4 -E nodiscard disc.img</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-3-1-mkfs.png" alt="Nou formateig ràpid amb mkfs.ext4 -E nodiscard" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-3-1-mkfs.png" alt="Nou formateig ràpid amb mkfs.ext4 -E nodiscard" style="max-width:100%;height:auto;">
   <figcaption>Nou formateig ràpid amb mkfs.ext4 -E nodiscard</figcaption>
 </figure>
 
@@ -118,7 +158,7 @@ cat originals.sha</code></pre>
 ls -l /mnt/prova
 sudo umount /mnt/prova</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-3-2-buit.png" alt="El disc sembla buit després del formateig" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-3-2-buit.png" alt="El disc sembla buit després del formateig" style="max-width:100%;height:auto;">
   <figcaption>El disc sembla buit després del formateig</figcaption>
 </figure>
 
@@ -126,14 +166,14 @@ sudo umount /mnt/prova</code></pre>
 <h4>4.1 Executar PhotoRec</h4>
 <pre><code>photorec /d recup /cmd disc.img options,fileopt,everything,enable,search</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-4-1-photorec.png" alt="Execució de PhotoRec sobre disc.img" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-4-1-photorec.png" alt="Execució de PhotoRec sobre disc.img" style="max-width:100%;height:auto;">
   <figcaption>Execució de PhotoRec sobre disc.img</figcaption>
 </figure>
 
 <h4>4.2 Mirar què ha trobat</h4>
 <pre><code>ls recup.1</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-4-2-recup.png" alt="Fitxers recuperats a recup.1" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-4-2-recup.png" alt="Fitxers recuperats a recup.1" style="max-width:100%;height:auto;">
   <figcaption>Fitxers recuperats a recup.1</figcaption>
 </figure>
 
@@ -142,7 +182,7 @@ sudo umount /mnt/prova</code></pre>
 <pre><code>sha256sum recup.1/*
 cat originals.sha</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-4-3-hash.png" alt="Comparació de hashos dels fitxers recuperats i dels originals" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-4-3-hash.png" alt="Comparació de hashos dels fitxers recuperats i dels originals" style="max-width:100%;height:auto;">
   <figcaption>Comparació de hashos dels fitxers recuperats i dels originals</figcaption>
 </figure>
 
@@ -150,7 +190,7 @@ cat originals.sha</code></pre>
 <p>PhotoRec no ha recuperat <code>notes.txt</code>, però el text encara és al disc i es pot trobar amb <code>strings</code>.</p>
 <pre><code>strings -e S disc.img | grep pizza</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-4-4-strings.png" alt="El text secret trobat amb strings" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-4-4-strings.png" alt="El text secret trobat amb strings" style="max-width:100%;height:auto;">
   <figcaption>El text secret trobat amb strings</figcaption>
 </figure>
 
@@ -158,7 +198,7 @@ cat originals.sha</code></pre>
 <h4>5.1 Omplir el disc de zeros</h4>
 <pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 conv=notrunc status=progress</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-5-1-zeros.png" alt="Disc sobreescrit amb zeros" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-5-1-zeros.png" alt="Disc sobreescrit amb zeros" style="max-width:100%;height:auto;">
   <figcaption>Disc sobreescrit amb zeros</figcaption>
 </figure>
 
@@ -166,7 +206,7 @@ cat originals.sha</code></pre>
 <pre><code>photorec /d recup_zeros /cmd disc.img options,fileopt,everything,enable,search
 ls recup_zeros.1</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-5-2-photorec-zeros.png" alt="Intent de recuperació després d'omplir de zeros" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-5-2-photorec-zeros.png" alt="Intent de recuperació després d'omplir de zeros" style="max-width:100%;height:auto;">
   <figcaption>Intent de recuperació després d'omplir de zeros</figcaption>
 </figure>
 
@@ -174,7 +214,7 @@ ls recup_zeros.1</code></pre>
 <p>Ara <code>strings</code> ja no troba res.</p>
 <pre><code>strings -e S disc.img | grep pizza</code></pre>
 <figure>
-  <img src="../img/sprint2/formateig-5-3-strings-zeros.png" alt="strings no troba el text després de l'esborrat de baix nivell" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/formateig-5-3-strings-zeros.png" alt="strings no troba el text després de l'esborrat de baix nivell" style="max-width:100%;height:auto;">
   <figcaption>strings no troba el text després de l'esborrat de baix nivell</figcaption>
 </figure>
 
@@ -196,14 +236,14 @@ ls recup_zeros.1</code></pre>
 <h4>0.2 UID, grup principal i grups</h4>
 <pre><code>id</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n0-id.png" alt="Sortida d'id: UID, GID i grups de l'usuari" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n0-id.png" alt="Sortida d'id: UID, GID i grups de l'usuari" style="max-width:100%;height:auto;">
   <figcaption>Sortida d'id: UID, GID i grups de l'usuari</figcaption>
 </figure>
 
 <h4>0.3 La meva línia a /etc/passwd</h4>
 <pre><code>grep $USER /etc/passwd</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n0-passwd.png" alt="Línia de l'usuari a /etc/passwd" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n0-passwd.png" alt="Línia de l'usuari a /etc/passwd" style="max-width:100%;height:auto;">
   <figcaption>Línia de l'usuari a /etc/passwd</figcaption>
 </figure>
 
@@ -212,18 +252,18 @@ ls recup_zeros.1</code></pre>
 <pre><code>cat /etc/shadow
 sudo grep $USER /etc/shadow</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n0-shadow-denegat.png" alt="cat /etc/shadow: Permission denied" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n0-shadow-denegat.png" alt="cat /etc/shadow: Permission denied" style="max-width:100%;height:auto;">
   <figcaption>cat /etc/shadow: Permission denied</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/usuaris-n0-shadow-sudo.png" alt="sudo grep $USER /etc/shadow (hash tapat)" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n0-shadow-sudo.png" alt="sudo grep $USER /etc/shadow (hash tapat)" style="max-width:100%;height:auto;">
   <figcaption>sudo grep $USER /etc/shadow (hash tapat)</figcaption>
 </figure>
 
 <h4>0.6 Membres del grup sudo</h4>
 <pre><code>getent group sudo</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n0-grup-sudo.png" alt="Membres del grup sudo" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n0-grup-sudo.png" alt="Membres del grup sudo" style="max-width:100%;height:auto;">
   <figcaption>Membres del grup sudo</figcaption>
 </figure>
 
@@ -233,7 +273,7 @@ sudo grep $USER /etc/shadow</code></pre>
 <pre><code>getent passwd nuria pau marc laia
 ls /home</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n1-usuaris.png" alt="Usuaris creats i carpetes a /home" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n1-usuaris.png" alt="Usuaris creats i carpetes a /home" style="max-width:100%;height:auto;">
   <figcaption>Usuaris creats i carpetes a /home</figcaption>
 </figure>
 
@@ -246,7 +286,7 @@ touch primer_dia.txt
 ls -l
 exit</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n2-sessio.png" alt="Sessió de nuria i creació de primer_dia.txt" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n2-sessio.png" alt="Sessió de nuria i creació de primer_dia.txt" style="max-width:100%;height:auto;">
   <figcaption>Sessió de nuria i creació de primer_dia.txt</figcaption>
 </figure>
 
@@ -263,7 +303,7 @@ sudo groupdel progamadors
 getent group progamadors
 tail -5 /etc/group</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n3-grups.png" alt="Creació i esborrat de grups" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n3-grups.png" alt="Creació i esborrat de grups" style="max-width:100%;height:auto;">
   <figcaption>Creació i esborrat de grups</figcaption>
 </figure>
 
@@ -276,7 +316,7 @@ sudo usermod -aG programadors nuria
 groups nuria
 getent group programadors artistes testers becaris</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n4-equips.png" alt="Membres dels grups després d'usermod" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n4-equips.png" alt="Membres dels grups després d'usermod" style="max-width:100%;height:auto;">
   <figcaption>Membres dels grups després d'usermod</figcaption>
 </figure>
 
@@ -288,11 +328,11 @@ su - pau
 touch dibuix_abans.png
 ls -l</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n5-abans.png" alt="Fitxer dibuix_abans.png de pau" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n5-abans.png" alt="Fitxer dibuix_abans.png de pau" style="max-width:100%;height:auto;">
   <figcaption>Fitxer dibuix_abans.png de pau</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/usuaris-n5-despres.png" alt="Fitxer codi_despres.py de pau" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n5-despres.png" alt="Fitxer codi_despres.py de pau" style="max-width:100%;height:auto;">
   <figcaption>Fitxer codi_despres.py de pau</figcaption>
 </figure>
 
@@ -305,7 +345,7 @@ su - marc
 sudo passwd -u marc
 sudo passwd -S marc</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n6-bloqueig.png" alt="Bloqueig i desbloqueig del compte de marc" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n6-bloqueig.png" alt="Bloqueig i desbloqueig del compte de marc" style="max-width:100%;height:auto;">
   <figcaption>Bloqueig i desbloqueig del compte de marc</figcaption>
 </figure>
 
@@ -319,11 +359,11 @@ id nvidal
 ls -l /home
 ls -l /home/nvidal</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n7-usermod.png" alt="usermod -l: nuria passa a nvidal" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n7-usermod.png" alt="usermod -l: nuria passa a nvidal" style="max-width:100%;height:auto;">
   <figcaption>usermod -l: nuria passa a nvidal</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/usuaris-n7-groupmod.png" alt="groupmod -n i comprovació a /home" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n7-groupmod.png" alt="groupmod -n i comprovació a /home" style="max-width:100%;height:auto;">
   <figcaption>groupmod -n i comprovació a /home</figcaption>
 </figure>
 
@@ -335,11 +375,11 @@ ls -l /home
 getent passwd nvidal pau marc
 getent group programadors artistes testers</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-n8-userdel.png" alt="userdel laia i llistat de /home" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n8-userdel.png" alt="userdel laia i llistat de /home" style="max-width:100%;height:auto;">
   <figcaption>userdel laia i llistat de /home</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/usuaris-n8-getent.png" alt="Usuaris i grups restants" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/usuaris-n8-getent.png" alt="Usuaris i grups restants" style="max-width:100%;height:auto;">
   <figcaption>Usuaris i grups restants</figcaption>
 </figure>
 
@@ -354,7 +394,7 @@ getent group programadors artistes testers</code></pre>
 <pre><code>ls -l
 ./sospitosos.sh</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n0-preparacio.png" alt="Contingut de ~/missio i execució de sospitosos.sh" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n0-preparacio.png" alt="Contingut de ~/missio i execució de sospitosos.sh" style="max-width:100%;height:auto;">
   <figcaption>Contingut de ~/missio i execució de sospitosos.sh</figcaption>
 </figure>
 
@@ -364,13 +404,13 @@ getent group programadors artistes testers</code></pre>
 <pre><code>pstree -p $USER</code></pre>
 
 <div style="display:flex;gap:8px;overflow-x:auto;align-items:flex-start;">
-  <img src="../img/sprint2/processos-n1-pstree-1.png" alt="Arbre de processos (pstree), part 1 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-2.png" alt="Arbre de processos (pstree), part 2 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-3.png" alt="Arbre de processos (pstree), part 3 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-4.png" alt="Arbre de processos (pstree), part 4 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-5.png" alt="Arbre de processos (pstree), part 5 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-6.png" alt="Arbre de processos (pstree), part 6 de 7" style="height:auto;">
-  <img src="../img/sprint2/processos-n1-pstree-7.png" alt="Arbre de processos (pstree), part 7 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-1.png" alt="Arbre de processos (pstree), part 1 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-2.png" alt="Arbre de processos (pstree), part 2 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-3.png" alt="Arbre de processos (pstree), part 3 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-4.png" alt="Arbre de processos (pstree), part 4 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-5.png" alt="Arbre de processos (pstree), part 5 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-6.png" alt="Arbre de processos (pstree), part 6 de 7" style="height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n1-pstree-7.png" alt="Arbre de processos (pstree), part 7 de 7" style="height:auto;">
 </div>
 
 <h3>Nivell 2. Qui consumeix més?</h3>
@@ -378,7 +418,7 @@ getent group programadors artistes testers</code></pre>
 <p>Els dos processos <code>minador</code> consumeixen un 50 % de CPU cadascun.</p>
 <pre><code>top</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n2-top.png" alt="top: els processos minador al capdamunt" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n2-top.png" alt="top: els processos minador al capdamunt" style="max-width:100%;height:auto;">
   <figcaption>top: els processos minador al capdamunt</figcaption>
 </figure>
 
@@ -388,7 +428,7 @@ getent group programadors artistes testers</code></pre>
 ps -o pid,ppid,user,stat,etime,%cpu,comm -C minador,espia,backup_nocturn
 ps -o pid,comm -p 1520</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n3-ps.png" alt="Filtrat amb pgrep i ps" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n3-ps.png" alt="Filtrat amb pgrep i ps" style="max-width:100%;height:auto;">
   <figcaption>Filtrat amb pgrep i ps</figcaption>
 </figure>
 
@@ -405,11 +445,11 @@ fg %1
 bg %1
 watch -n 1 cat progres.txt</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n4-jobs.png" alt="Control de tasques amb jobs, bg i fg" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n4-jobs.png" alt="Control de tasques amb jobs, bg i fg" style="max-width:100%;height:auto;">
   <figcaption>Control de tasques amb jobs, bg i fg</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/processos-n4-progres.png" alt="Progrés de la descàrrega: 74 %" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n4-progres.png" alt="Progrés de la descàrrega: 74 %" style="max-width:100%;height:auto;">
   <figcaption>Progrés de la descàrrega: 74 %</figcaption>
 </figure>
 
@@ -420,11 +460,11 @@ watch -n 1 cat progres.txt</code></pre>
 sudo renice -n -10 -p $(pgrep descarrega)
 top -p $(pgrep -d, 'minador|descarrega')</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n5-renice.png" alt="renice sense permisos (denegat) i amb sudo" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n5-renice.png" alt="renice sense permisos (denegat) i amb sudo" style="max-width:100%;height:auto;">
   <figcaption>renice sense permisos (denegat) i amb sudo</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/processos-n5-top.png" alt="top amb els processos seleccionats" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n5-top.png" alt="top amb els processos seleccionats" style="max-width:100%;height:auto;">
   <figcaption>top amb els processos seleccionats</figcaption>
 </figure>
 
@@ -442,7 +482,7 @@ ps -o pid,stat,comm -p 10817
 kill -CONT 10817
 ps -o pid,stat,comm -p 10817</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n6-kill.png" alt="Neutralització dels processos intrusos" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n6-kill.png" alt="Neutralització dels processos intrusos" style="max-width:100%;height:auto;">
   <figcaption>Neutralització dels processos intrusos</figcaption>
 </figure>
 
@@ -452,13 +492,21 @@ ps -o pid,stat,comm -p 10817</code></pre>
 <pre><code>watch -n 1 cat progres.txt
 pstree -ps $(pgrep descarrega)</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-n7-progres.png" alt="Descàrrega completada" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n7-progres.png" alt="Descàrrega completada" style="max-width:100%;height:auto;">
   <figcaption>Descàrrega completada</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/processos-n7-pstree.png" alt="pstree -ps de descarrega.sh" style="max-width:100%;height:auto;">
+  <img loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/img/sprint2/','/img/')" src="../img/sprint2/processos-n7-pstree.png" alt="pstree -ps de descarrega.sh" style="max-width:100%;height:auto;">
   <figcaption>pstree -ps de descarrega.sh</figcaption>
 </figure>
 
 <p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
 
+<footer>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència CC BY-NC-SA 4.0" style="border:none"></a>
+Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">CC BY-NC-SA 4.0</a><br>
+Autor/a: <strong>Iker Garcia</strong> · Sistemes Operatius (ISOPJ1)
+</footer>
+</main>
+</body>
+</html>
