@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sprint 2 · Gestió de programari i usuaris</title>
-  <!-- IMPORTANT: copia aquí el <link rel="stylesheet"> i l'estructura de capçalera/peu
-       que ja tens al teu sprint2/index.html actual. Només cal substituir el contingut. -->
-  <style>
-    /* Estil mínim per a les captures (pots esborrar-ho si el teu CSS ja ho cobreix) */
-    figure { margin: 1rem 0; }
-    figure img { max-width: 100%; height: auto; border-radius: 6px; }
-    figcaption { font-size: .9rem; color: #555; margin-top: .3rem; }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="../index.html">Portada</a> /
-  <a href="../sprints.html">Índex de sprints</a> / Sprint 2
-</nav>
-
-<h1 id="index-apartats">Sprint 2 · Gestió de programari i usuaris</h1>
-<p>Índex d'apartats d'aquest sprint</p>
-
+<!-- 1) Substitueix la taula de l'índex per aquesta -->
 <table>
   <thead><tr><th>#</th><th>Apartat</th></tr></thead>
   <tbody>
@@ -32,399 +8,457 @@
   </tbody>
 </table>
 
-<!-- ======================================================= -->
-<!-- APARTAT 1 · TIPUS DE FORMATEIG                          -->
-<!-- ======================================================= -->
+<!-- 2) Substitueix els apartats d'exemple (Lorem ipsum) per tot això -->
+
 <h2 id="apartat1">1. Tipus de formateig i recuperació de dades</h2>
-<p>
-  En aquest apartat es comprova la diferència entre un <strong>formateig d'alt nivell</strong>
-  (ràpid) i un <strong>esborrat de baix nivell</strong> (omplir de zeros). Es fa servir un
-  disc virtual (un fitxer <code>disc.img</code>) i l'eina <strong>PhotoRec</strong> per
-  intentar recuperar els fitxers després de cada esborrat.
-</p>
+<p>Pràctica amb PhotoRec: es crea un disc virtual, es formata, es recuperen els fitxers i es comprova la diferència entre un formateig ràpid i un esborrat de baix nivell.</p>
 
-<h3>1.1 Preparació de l'entorn</h3>
-<p>Primer s'instal·la el paquet <code>testdisk</code>, que inclou PhotoRec.</p>
+<h3>Part 0. Preparació</h3>
+<h4>0.1 Instal·lar PhotoRec</h4>
+<p>PhotoRec ve inclòs dins el paquet <strong>testdisk</strong>.</p>
+<pre><code>sudo apt install testdisk</code></pre>
 <figure>
-  <img src="../img/sprint2/format-01-instalar-testdisk.png" alt="Instal·lació de testdisk amb apt">
-  <figcaption>Instal·lació de <code>testdisk</code> (<code>sudo apt install testdisk</code>).</figcaption>
+  <img src="../img/sprint2/formateig-0-1-instal-lacio.png" alt="Instal·lació del paquet testdisk amb apt" style="max-width:100%;height:auto;">
+  <figcaption>Instal·lació del paquet testdisk amb apt</figcaption>
 </figure>
 
-<p>Es crea la carpeta de treball <code>~/practica</code> i s'hi entra.</p>
+<h4>0.2 Crear la carpeta de la pràctica</h4>
+<pre><code>mkdir -p ~/practica
+cd ~/practica
+pwd</code></pre>
 <figure>
-  <img src="../img/sprint2/format-02-carpeta-practica.png" alt="Creació de la carpeta practica">
-  <figcaption><code>mkdir -p ~/practica</code>, <code>cd ~/practica</code> i <code>pwd</code> per comprovar la ruta.</figcaption>
+  <img src="../img/sprint2/formateig-0-2-carpeta.png" alt="Creació i accés a la carpeta ~/practica" style="max-width:100%;height:auto;">
+  <figcaption>Creació i accés a la carpeta ~/practica</figcaption>
 </figure>
 
-<p>Es posen tres fitxers de prova de tipus diferent: un PDF, una foto JPG i un fitxer de text.</p>
+<h4>0.3 Fitxers de prova</h4>
+<p>Tres fitxers de prova: <code>apunts.pdf</code>, <code>foto.jpg</code> i <code>notes.txt</code> (aquest últim amb un text secret).</p>
+<pre><code>echo "El meu secret és que m'encanta la pizza amb pinya" &gt; notes.txt
+ls -l</code></pre>
 <figure>
-  <img src="../img/sprint2/format-03-fitxers-prova.png" alt="Fitxers de prova a la carpeta practica">
-  <figcaption>Fitxers de prova: <code>apunts.pdf</code>, <code>foto.jpg</code> i <code>notes.txt</code>.</figcaption>
+  <img src="../img/sprint2/formateig-0-3-explorador.png" alt="Els tres fitxers de prova a l'explorador de fitxers" style="max-width:100%;height:auto;">
+  <figcaption>Els tres fitxers de prova a l'explorador de fitxers</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/format-04-notes-ls.png" alt="Contingut de notes.txt i ls -l">
-  <figcaption>Amb <code>echo</code> s'escriu una frase a <code>notes.txt</code> i amb <code>ls -l</code> es comproven les mides.</figcaption>
-</figure>
-
-<h3>1.2 Crear el disc virtual</h3>
-<p>Amb <code>dd</code> es crea un fitxer de 200 MB ple de zeros que farà de disc.</p>
-<figure>
-  <img src="../img/sprint2/format-05-dd-crear-disc.png" alt="Creació de disc.img amb dd">
-  <figcaption><code>dd if=/dev/zero of=disc.img bs=1M count=200</code></figcaption>
+  <img src="../img/sprint2/formateig-0-3-echo.png" alt="Creació de notes.txt amb echo" style="max-width:100%;height:auto;">
+  <figcaption>Creació de notes.txt amb echo</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/format-06-ls-disc.png" alt="Comprovació de disc.img">
-  <figcaption>Es comprova que <code>disc.img</code> existeix i fa 200 MB.</figcaption>
+  <img src="../img/sprint2/formateig-0-3-ls.png" alt="Llistat dels fitxers amb ls -l" style="max-width:100%;height:auto;">
+  <figcaption>Llistat dels fitxers amb ls -l</figcaption>
 </figure>
 
-<h3>1.3 Formatar, muntar i desar els fitxers</h3>
-<p>El disc es formata amb el sistema de fitxers <strong>ext4</strong> i es munta en una carpeta (<code>/mnt/prova</code>).</p>
+<h3>Part 1. Crear el disc virtual</h3>
+<h4>1.1 Crear el fitxer</h4>
+<p>Es crea un fitxer de 200 MB ple de zeros que farà de disc.</p>
+<pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 status=progress</code></pre>
 <figure>
-  <img src="../img/sprint2/format-07-mkfs-ext4.png" alt="mkfs.ext4 sobre disc.img">
-  <figcaption>Formateig amb <code>mkfs.ext4 disc.img</code>.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/format-08-muntar.png" alt="Muntatge del disc amb loop">
-  <figcaption>Muntatge amb <code>mount -o loop</code>.</figcaption>
-</figure>
-<p>S'hi copien els tres fitxers i es comprova que hi són.</p>
-<figure>
-  <img src="../img/sprint2/format-09-copiar-fitxers.png" alt="Copia dels fitxers al disc muntat">
-  <figcaption>Fitxers dins <code>/mnt/prova</code> (la carpeta <code>lost+found</code> la crea ext4 automàticament).</figcaption>
-</figure>
-<p>
-  Abans d'esborrar res es guarda l'<strong>empremta digital (hash SHA-256)</strong> dels originals,
-  per poder demostrar després que els fitxers recuperats són idèntics. Finalment es desmunta el disc.
-</p>
-<figure>
-  <img src="../img/sprint2/format-10-sha256-originals.png" alt="Hashes SHA-256 dels originals">
-  <figcaption><code>sha256sum</code> dels originals desat a <code>originals.sha</code>.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/format-11-desmuntar.png" alt="Desmuntatge del disc">
-  <figcaption><code>sudo umount /mnt/prova</code></figcaption>
+  <img src="../img/sprint2/formateig-1-1-dd.png" alt="Creació de disc.img amb dd" style="max-width:100%;height:auto;">
+  <figcaption>Creació de disc.img amb dd</figcaption>
 </figure>
 
-<h3>1.4 Formateig d'alt nivell (ràpid)</h3>
-<p>
-  Es torna a formatar el disc amb <code>mkfs.ext4</code>. Això només crea un sistema de fitxers nou
-  (taules d'inodes, superblocs…), però <strong>no esborra el contingut dels blocs de dades</strong>.
-</p>
+<h4>1.2 Comprovar que existeix</h4>
+<pre><code>ls -lh disc.img</code></pre>
 <figure>
-  <img src="../img/sprint2/format-12-mkfs-nodiscard.png" alt="Segon mkfs.ext4 amb nodiscard">
-  <figcaption><code>mkfs.ext4 -E nodiscard disc.img</code>: el sistema avisa que ja hi havia un ext4 i s'accepta.</figcaption>
-</figure>
-<p>En muntar-lo, el disc sembla buit: només hi ha <code>lost+found</code>.</p>
-<figure>
-  <img src="../img/sprint2/format-13-disc-buit.png" alt="Disc muntat sense fitxers">
-  <figcaption>El disc sembla buit, però les dades encara hi són.</figcaption>
+  <img src="../img/sprint2/formateig-1-2-ls.png" alt="disc.img de 200M" style="max-width:100%;height:auto;">
+  <figcaption>disc.img de 200M</figcaption>
 </figure>
 
-<h3>1.5 Recuperació amb PhotoRec</h3>
-<p>S'executa PhotoRec en mode comanda sobre la imatge del disc, buscant tots els tipus de fitxer.</p>
+<h3>Part 2. Formatar el disc i desar-hi fitxers</h3>
+<h4>2.1 Donar format al disc</h4>
+<pre><code>mkfs.ext4 disc.img</code></pre>
 <figure>
-  <img src="../img/sprint2/format-14-photorec.png" alt="Execució de PhotoRec">
-  <figcaption><code>photorec /d recup /cmd disc.img options,fileopt,everything,enable,search</code></figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/format-15-recuperats.png" alt="Fitxers recuperats a recup.1">
-  <figcaption>PhotoRec ha recuperat la foto i el PDF amb <strong>noms nous</strong>, més un <code>report.xml</code>.</figcaption>
-</figure>
-<p>Es comparen els hashes dels recuperats amb els dels originals: coincideixen, per tant són idèntics.</p>
-<figure>
-  <img src="../img/sprint2/format-16-comparar-hash.png" alt="Comparació de hashes">
-  <figcaption>Els hashes de la foto i del PDF són iguals als originals.</figcaption>
-</figure>
-<p>
-  El <code>notes.txt</code> no apareix, perquè els fitxers de text no tenen una capçalera
-  característica que PhotoRec pugui identificar. Tot i així, la frase continua al disc i es troba
-  amb <code>strings</code> + <code>grep</code>:
-</p>
-<figure>
-  <img src="../img/sprint2/format-17-strings-pizza.png" alt="strings trobant el text">
-  <figcaption><code>strings -e S disc.img | grep pizza</code> localitza el text.</figcaption>
+  <img src="../img/sprint2/formateig-2-1-mkfs.png" alt="Formateig del disc amb ext4" style="max-width:100%;height:auto;">
+  <figcaption>Formateig del disc amb ext4</figcaption>
 </figure>
 
-<h3>1.6 Esborrat de baix nivell (zeros)</h3>
-<p>Ara se sobreescriu tot el disc amb zeros i es torna a provar de recuperar.</p>
+<h4>2.2 Muntar el disc</h4>
+<pre><code>sudo mkdir -p /mnt/prova
+sudo mount -o loop disc.img /mnt/prova</code></pre>
 <figure>
-  <img src="../img/sprint2/format-18-dd-zeros.png" alt="Disc omplert de zeros">
-  <figcaption><code>dd if=/dev/zero of=disc.img bs=1M count=200 conv=notrunc</code></figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/format-19-photorec-zeros.png" alt="PhotoRec sense resultats">
-  <figcaption>No es crea cap carpeta <code>recup_zeros.1</code>: no hi ha res a recuperar.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/format-20-strings-buit.png" alt="strings sense resultats">
-  <figcaption>Ni tan sols <code>strings</code> troba ja el text: les dades s'han destruït.</figcaption>
+  <img src="../img/sprint2/formateig-2-2-mount.png" alt="Muntatge del disc a /mnt/prova" style="max-width:100%;height:auto;">
+  <figcaption>Muntatge del disc a /mnt/prova</figcaption>
 </figure>
 
-<h3>1.7 Preguntes de reflexió</h3>
+<h4>2.3 Copiar-hi els fitxers</h4>
+<pre><code>sudo cp foto.jpg apunts.pdf notes.txt /mnt/prova/
+ls -l /mnt/prova</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-2-3-cp.png" alt="Còpia dels fitxers al disc muntat" style="max-width:100%;height:auto;">
+  <figcaption>Còpia dels fitxers al disc muntat</figcaption>
+</figure>
+
+<h4>2.4 Desar l'empremta digital dels originals</h4>
+<p>Es guarden els hashos SHA-256 per poder comparar després els fitxers recuperats.</p>
+<pre><code>sha256sum foto.jpg apunts.pdf notes.txt &gt; originals.sha
+cat originals.sha</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-2-4-sha256.png" alt="Hashos SHA-256 dels originals" style="max-width:100%;height:auto;">
+  <figcaption>Hashos SHA-256 dels originals</figcaption>
+</figure>
+
+<h4>2.5 Desmuntar el disc</h4>
+<pre><code>sudo umount /mnt/prova</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-2-5-umount.png" alt="Desmuntatge del disc" style="max-width:100%;height:auto;">
+  <figcaption>Desmuntatge del disc</figcaption>
+</figure>
+
+<h3>Part 3. Formateig d'alt nivell (ràpid)</h3>
+<h4>3.1 Tornar a formatar</h4>
+<pre><code>mkfs.ext4 -E nodiscard disc.img</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-3-1-mkfs.png" alt="Nou formateig ràpid amb mkfs.ext4 -E nodiscard" style="max-width:100%;height:auto;">
+  <figcaption>Nou formateig ràpid amb mkfs.ext4 -E nodiscard</figcaption>
+</figure>
+
+<h4>3.2 Mirar què hi ha ara al disc</h4>
+<p>Al disc només hi apareix <code>lost+found</code>: sembla buit.</p>
+<pre><code>sudo mount -o loop disc.img /mnt/prova
+ls -l /mnt/prova
+sudo umount /mnt/prova</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-3-2-buit.png" alt="El disc sembla buit després del formateig" style="max-width:100%;height:auto;">
+  <figcaption>El disc sembla buit després del formateig</figcaption>
+</figure>
+
+<h3>Part 4. Recuperar els fitxers</h3>
+<h4>4.1 Executar PhotoRec</h4>
+<pre><code>photorec /d recup /cmd disc.img options,fileopt,everything,enable,search</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-4-1-photorec.png" alt="Execució de PhotoRec sobre disc.img" style="max-width:100%;height:auto;">
+  <figcaption>Execució de PhotoRec sobre disc.img</figcaption>
+</figure>
+
+<h4>4.2 Mirar què ha trobat</h4>
+<pre><code>ls recup.1</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-4-2-recup.png" alt="Fitxers recuperats a recup.1" style="max-width:100%;height:auto;">
+  <figcaption>Fitxers recuperats a recup.1</figcaption>
+</figure>
+
+<h4>4.3 Comprovar que són idèntics</h4>
+<p>Els hashos de la foto i del PDF recuperats coincideixen amb els dels originals.</p>
+<pre><code>sha256sum recup.1/*
+cat originals.sha</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-4-3-hash.png" alt="Comparació de hashos dels fitxers recuperats i dels originals" style="max-width:100%;height:auto;">
+  <figcaption>Comparació de hashos dels fitxers recuperats i dels originals</figcaption>
+</figure>
+
+<h4>4.4 I el text?</h4>
+<p>PhotoRec no ha recuperat <code>notes.txt</code>, però el text encara és al disc i es pot trobar amb <code>strings</code>.</p>
+<pre><code>strings -e S disc.img | grep pizza</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-4-4-strings.png" alt="El text secret trobat amb strings" style="max-width:100%;height:auto;">
+  <figcaption>El text secret trobat amb strings</figcaption>
+</figure>
+
+<h3>Part 5. Esborrat de baix nivell</h3>
+<h4>5.1 Omplir el disc de zeros</h4>
+<pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 conv=notrunc status=progress</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-5-1-zeros.png" alt="Disc sobreescrit amb zeros" style="max-width:100%;height:auto;">
+  <figcaption>Disc sobreescrit amb zeros</figcaption>
+</figure>
+
+<h4>5.2 Tornar a provar de recuperar</h4>
+<pre><code>photorec /d recup_zeros /cmd disc.img options,fileopt,everything,enable,search
+ls recup_zeros.1</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-5-2-photorec-zeros.png" alt="Intent de recuperació després d'omplir de zeros" style="max-width:100%;height:auto;">
+  <figcaption>Intent de recuperació després d'omplir de zeros</figcaption>
+</figure>
+
+<h4>5.3 Buscar el text</h4>
+<p>Ara <code>strings</code> ja no troba res.</p>
+<pre><code>strings -e S disc.img | grep pizza</code></pre>
+<figure>
+  <img src="../img/sprint2/formateig-5-3-strings-zeros.png" alt="strings no troba el text després de l'esborrat de baix nivell" style="max-width:100%;height:auto;">
+  <figcaption>strings no troba el text després de l'esborrat de baix nivell</figcaption>
+</figure>
+
+<h3>Preguntes de la pràctica</h3>
 <ol>
-  <li>
-    <strong>Després de la part 3, el disc semblava buit. On eren realment els fitxers?</strong><br>
-    Encara eren als blocs de dades del disc. El formateig ràpid només va esborrar l'estructura
-    que permet localitzar-los (taules d'inodes), però no les dades.
-  </li>
-  <li>
-    <strong>Per què els fitxers recuperats tenen noms diferents?</strong><br>
-    Els noms es guarden a l'estructura del sistema de fitxers, que s'ha esborrat. PhotoRec
-    recupera pel contingut i assigna noms nous.
-  </li>
-  <li>
-    <strong>Com es demostra que la foto recuperada és idèntica?</strong><br>
-    Comparant el hash SHA-256 de la foto original i de la recuperada: si coincideix, són idèntiques bit a bit.
-  </li>
-  <li>
-    <strong>Per què PhotoRec troba la foto i el PDF, però no <code>notes.txt</code>? Com es troba igualment?</strong><br>
-    PhotoRec identifica fitxers per signatures (capçaleres) pròpies de cada format. Un fitxer de text
-    pla no en té. Es va trobar amb <code>strings</code> i <code>grep</code>, que busquen text llegible a tot el disc.
-  </li>
-  <li>
-    <strong>Quin nivell de formateig a la part 3 i quin a la part 5?</strong><br>
-    A la part 3, un formateig d'alt nivell (ràpid), que no toca les dades. A la part 5, un esborrat
-    de baix nivell (sobreescriure amb zeros), que destrueix les dades.
-  </li>
-  <li>
-    <strong>Si vols vendre un USB amb fotos personals, quin formateig faries?</strong><br>
-    Un esborrat de baix nivell (sobreescriure tot el dispositiu), perquè un formateig ràpid deixa les
-    fotos recuperables i podria posar en risc la privacitat.
-  </li>
+<li><strong>Després de la part 3, el disc semblava buit. On eren realment els teus fitxers?</strong><br>Els fitxers encara eren al disc, però el sistema de fitxers no els mostrava perquè s'havia esborrat la informació que permetia localitzar-los. Les dades encara es podien recuperar.</li>
+<li><strong>Per què els fitxers recuperats tenen noms diferents dels originals?</strong><br>Perquè PhotoRec recupera els fitxers pel seu contingut, però no conserva els noms originals i els assigna noms nous.</li>
+<li><strong>Com pots demostrar que la foto recuperada és exactament la mateixa que l'original?</strong><br>Comparant el hash de les dues fotos. Si el resultat és igual, els fitxers tenen exactament el mateix contingut.</li>
+<li><strong>Per què PhotoRec ha trobat la foto i el PDF, però no el notes.txt? Com l'has trobat igualment?</strong><br>PhotoRec reconeix els fitxers segons la seva estructura (capçaleres), i un fitxer de text pla no en té, per això no sempre el pot recuperar. L'he trobat amb l'eina <code>strings</code>, que cerca text directament al disc.</li>
+<li><strong>Quin nivell de formateig has fet a la part 3 i quin a la part 5?</strong><br>A la part 3 he fet un formateig ràpid (d'alt nivell), que elimina les referències als fitxers però permet recuperar les dades. A la part 5 he fet un esborrat de baix nivell (omplir de zeros), que sobreescriu les dades i en dificulta la recuperació.</li>
+<li><strong>Vols vendre un USB on tenies fotos personals. Quin formateig faries abans de vendre'l i per què?</strong><br>Faria un esborrat de baix nivell (sobreescriure tot l'USB), perquè així seria molt més difícil recuperar les fotos personals i protegiria la meva privacitat.</li>
 </ol>
-
 <p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
 
-<!-- ======================================================= -->
-<!-- APARTAT 2 · GESTIÓ D'USUARIS                            -->
-<!-- ======================================================= -->
 <h2 id="apartat2">2. Gestió d'usuaris i grups</h2>
-<p>
-  Pràctica per nivells amb les ordres d'administració d'usuaris i grups d'Ubuntu: consultar,
-  crear, modificar, bloquejar i esborrar.
-</p>
+<p>Pràctica per nivells: consultar el sistema, crear i modificar usuaris i grups, bloquejar comptes i esborrar-los.</p>
 
-<h3>Nivell 0 · Conèixer el sistema</h3>
-<p><code>id</code> mostra l'UID, el grup principal i tots els grups de l'usuari.</p>
+<h3>Nivell 0. Conèixer el sistema</h3>
+<h4>0.2 UID, grup principal i grups</h4>
+<pre><code>id</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-01-id.png" alt="Sortida de id">
-  <figcaption>UID 1000, grup principal <code>iker</code>, i membre de <code>sudo</code> entre d'altres.</figcaption>
-</figure>
-<p>
-  La línia de l'usuari a <code>/etc/passwd</code> conté: nom, UID, GID, nom complet, carpeta personal i shell.
-</p>
-<figure>
-  <img src="../img/sprint2/usuaris-02-passwd.png" alt="Línia de l'usuari a /etc/passwd">
-  <figcaption><code>grep $USER /etc/passwd</code></figcaption>
-</figure>
-<p>
-  <code>/etc/shadow</code> guarda els hashes de les contrasenyes i només el pot llegir root: sense
-  permisos dona «Permission denied» i amb <code>sudo</code> es pot consultar.
-</p>
-<figure>
-  <img src="../img/sprint2/usuaris-03-shadow.png" alt="Lectura de /etc/shadow sense i amb sudo">
-  <figcaption>Accés denegat sense <code>sudo</code> i permès amb <code>sudo</code>.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/usuaris-04-grup-sudo.png" alt="Membres del grup sudo">
-  <figcaption><code>getent group sudo</code>: només <code>iker</code> és administrador.</figcaption>
+  <img src="../img/sprint2/usuaris-n0-id.png" alt="Sortida d'id: UID, GID i grups de l'usuari" style="max-width:100%;height:auto;">
+  <figcaption>Sortida d'id: UID, GID i grups de l'usuari</figcaption>
 </figure>
 
-<h3>Nivell 1 · Contractacions: crear usuaris</h3>
-<p>Es creen quatre usuaris (nuria, pau, marc i laia), cadascun amb la seva carpeta a <code>/home</code>.</p>
+<h4>0.3 La meva línia a /etc/passwd</h4>
+<pre><code>grep $USER /etc/passwd</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-05-crear-usuaris.png" alt="Usuaris creats i carpetes a /home">
-  <figcaption><code>getent passwd</code> i <code>ls /home</code> confirmen la creació.</figcaption>
+  <img src="../img/sprint2/usuaris-n0-passwd.png" alt="Línia de l'usuari a /etc/passwd" style="max-width:100%;height:auto;">
+  <figcaption>Línia de l'usuari a /etc/passwd</figcaption>
 </figure>
 
-<h3>Nivell 2 · Primer dia: iniciar sessió</h3>
-<p>Amb <code>su - nuria</code> s'inicia sessió com a nuria, es comprova amb <code>whoami</code> i <code>pwd</code>, i es crea un fitxer.</p>
+<h4>0.5 Llegir /etc/shadow sense permisos i amb sudo</h4>
+<p>Sense permisos l'accés es denega; amb <code>sudo</code> es pot llegir. (El hash de la contrasenya està tapat a la captura.)</p>
+<pre><code>cat /etc/shadow
+sudo grep $USER /etc/shadow</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-06-su-nuria.png" alt="Sessió com a nuria">
-  <figcaption>El fitxer <code>primer_dia.txt</code> pertany a nuria. (Un primer <code>ls-l</code> sense espai va fallar.)</figcaption>
+  <img src="../img/sprint2/usuaris-n0-shadow-denegat.png" alt="cat /etc/shadow: Permission denied" style="max-width:100%;height:auto;">
+  <figcaption>cat /etc/shadow: Permission denied</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-n0-shadow-sudo.png" alt="sudo grep $USER /etc/shadow (hash tapat)" style="max-width:100%;height:auto;">
+  <figcaption>sudo grep $USER /etc/shadow (hash tapat)</figcaption>
 </figure>
 
-<h3>Nivell 3 · Departaments: crear i esborrar grups</h3>
-<p>
-  Es creen els grups dels departaments amb <code>groupadd</code> i <code>addgroup</code>. En escriure
-  malament <code>progamadors</code> es va crear un grup erroni, que després es va esborrar amb
-  <code>groupdel</code> deixant només <code>programadors</code>.
-</p>
+<h4>0.6 Membres del grup sudo</h4>
+<pre><code>getent group sudo</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-07-grups.png" alt="Creació i esborrat de grups">
-  <figcaption>Grups abans i després d'esborrar el grup mal escrit.</figcaption>
+  <img src="../img/sprint2/usuaris-n0-grup-sudo.png" alt="Membres del grup sudo" style="max-width:100%;height:auto;">
+  <figcaption>Membres del grup sudo</figcaption>
 </figure>
 
-<h3>Nivell 4 · Equips: afegir i treure usuaris dels grups</h3>
-<p>
-  <code>usermod -G</code> <strong>substitueix</strong> els grups secundaris, mentre que
-  <code>usermod -aG</code> els <strong>afegeix</strong> sense perdre els existents.
-</p>
+<h3>Nivell 1. Contractacions · crear usuaris</h3>
+<h4>Usuaris creats</h4>
+<p>Usuaris <code>nuria</code>, <code>pau</code>, <code>marc</code> i <code>laia</code>, amb la seva carpeta personal a <code>/home</code>.</p>
+<pre><code>getent passwd nuria pau marc laia
+ls /home</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-08-usermod-grups.png" alt="Afegir nuria a grups">
-  <figcaption>Nuria acaba a <code>testers</code> i <code>programadors</code>.</figcaption>
+  <img src="../img/sprint2/usuaris-n1-usuaris.png" alt="Usuaris creats i carpetes a /home" style="max-width:100%;height:auto;">
+  <figcaption>Usuaris creats i carpetes a /home</figcaption>
 </figure>
 
-<h3>Nivell 5 · Canvi de departament: el grup principal</h3>
-<p>
-  El grup principal determina el grup propietari dels fitxers nous. Es comparen els fitxers creats
-  per pau abans i després del canvi.
-</p>
+<h3>Nivell 2. Primer dia · iniciar sessió</h3>
+<h4>Iniciar sessió com a nuria</h4>
+<pre><code>su - nuria
+whoami
+pwd
+touch primer_dia.txt
+ls -l
+exit</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-09-pau-abans.png" alt="Fitxer de pau abans del canvi">
-  <figcaption>Abans: <code>dibuix_abans.png</code>.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/usuaris-10-pau-despres.png" alt="Fitxer de pau després del canvi">
-  <figcaption>Després: <code>codi_despres.py</code>.</figcaption>
-</figure>
-
-<h3>Nivell 6 · El tràiler filtrat: bloquejar i desbloquejar</h3>
-<p>
-  <code>passwd -S</code> mostra l'estat del compte (<code>L</code> bloquejat, <code>P</code> amb contrasenya).
-  En bloquejar a marc, el hash a <code>/etc/shadow</code> passa a començar per <code>!</code> i no pot iniciar
-  sessió. Amb <code>passwd -u</code> es desbloqueja.
-</p>
-<figure>
-  <img src="../img/sprint2/usuaris-11-bloquejar.png" alt="Bloqueig i desbloqueig de marc">
-  <figcaption>Compte bloquejat, intent de <code>su</code> fallit i compte desbloquejat.</figcaption>
+  <img src="../img/sprint2/usuaris-n2-sessio.png" alt="Sessió de nuria i creació de primer_dia.txt" style="max-width:100%;height:auto;">
+  <figcaption>Sessió de nuria i creació de primer_dia.txt</figcaption>
 </figure>
 
-<h3>Nivell 7 · Nova norma de noms: modificar un usuari</h3>
-<p>
-  <code>usermod -l</code> canvia el nom d'usuari (nuria → nvidal) i <code>groupmod -n</code> el del seu grup.
-  L'UID es manté, per tant l'usuari conserva els seus fitxers i grups.
-</p>
+<h3>Nivell 3. Departaments · crear i esborrar grups</h3>
+<h4>Crear i esborrar grups</h4>
+<p>Per error es va crear primer el grup <code>progamadors</code> (sense la «r»); es va esborrar amb <code>groupdel</code> i es va deixar el correcte, <code>programadors</code>.</p>
+<pre><code>sudo groupadd progamadors
+sudo addgroup artistes
+sudo groupadd testers
+sudo addgroup becaris
+sudo groupadd programadors
+tail -5 /etc/group
+sudo groupdel progamadors
+getent group progamadors
+tail -5 /etc/group</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-12-usermod-nom.png" alt="Canvi de nom d'usuari i grup">
-  <figcaption>Nom d'usuari i grup actualitzats.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/usuaris-13-ls-home.png" alt="Carpetes a /home després del canvi">
-  <figcaption><code>ls -l /home</code> amb la carpeta de l'usuari ja com a <code>nvidal</code>.</figcaption>
+  <img src="../img/sprint2/usuaris-n3-grups.png" alt="Creació i esborrat de grups" style="max-width:100%;height:auto;">
+  <figcaption>Creació i esborrat de grups</figcaption>
 </figure>
 
-<h3>Nivell 8 · Fi de les pràctiques: esborrar usuaris i grups</h3>
-<p>
-  Amb <code>userdel laia</code> s'esborra l'usuari, però <strong>no la seva carpeta</strong> (sense
-  <code>-r</code>): a <code>/home</code> queda amb propietari numèric <code>1001</code>, ja sense nom.
-</p>
+<h3>Nivell 4. Equips · afegir i treure usuaris dels grups</h3>
+<h4>Afegir usuaris als grups</h4>
+<p><code>-G</code> sol <strong>substitueix</strong> els grups secundaris; <code>-aG</code> els <strong>afegeix</strong> als existents.</p>
+<pre><code>sudo usermod -G testers nuria
+groups nuria
+sudo usermod -aG programadors nuria
+groups nuria
+getent group programadors artistes testers becaris</code></pre>
 <figure>
-  <img src="../img/sprint2/usuaris-14-userdel.png" alt="userdel laia i carpeta orfe">
-  <figcaption>La carpeta de laia queda òrfena.</figcaption>
+  <img src="../img/sprint2/usuaris-n4-equips.png" alt="Membres dels grups després d'usermod" style="max-width:100%;height:auto;">
+  <figcaption>Membres dels grups després d'usermod</figcaption>
+</figure>
+
+<h3>Nivell 5. Canvi de departament · el grup principal</h3>
+<h4>Fitxers abans i després</h4>
+<p>Es creen fitxers amb l'usuari <code>pau</code> abans i després del canvi per veure a quin grup pertanyen.</p>
+<pre><code>id pau
+su - pau
+touch dibuix_abans.png
+ls -l</code></pre>
+<figure>
+  <img src="../img/sprint2/usuaris-n5-abans.png" alt="Fitxer dibuix_abans.png de pau" style="max-width:100%;height:auto;">
+  <figcaption>Fitxer dibuix_abans.png de pau</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/usuaris-15-estat-final.png" alt="Estat final d'usuaris i grups">
-  <figcaption>Estat final d'usuaris i grups.</figcaption>
+  <img src="../img/sprint2/usuaris-n5-despres.png" alt="Fitxer codi_despres.py de pau" style="max-width:100%;height:auto;">
+  <figcaption>Fitxer codi_despres.py de pau</figcaption>
+</figure>
+
+<h3>Nivell 6. El tràiler filtrat · bloquejar i desbloquejar</h3>
+<h4>Bloquejar i desbloquejar marc</h4>
+<p>Amb el compte bloquejat (<code>L</code>) l'inici de sessió falla; en desbloquejar-lo passa a <code>P</code>. (El hash està tapat a la captura.)</p>
+<pre><code>sudo passwd -S marc
+sudo grep marc /etc/shadow
+su - marc
+sudo passwd -u marc
+sudo passwd -S marc</code></pre>
+<figure>
+  <img src="../img/sprint2/usuaris-n6-bloqueig.png" alt="Bloqueig i desbloqueig del compte de marc" style="max-width:100%;height:auto;">
+  <figcaption>Bloqueig i desbloqueig del compte de marc</figcaption>
+</figure>
+
+<h3>Nivell 7. Nova norma de noms · modificar un usuari</h3>
+<h4>Canviar el nom d'usuari i de grup</h4>
+<pre><code>sudo usermod -l nvidal nuria
+id nvidal
+grep nvidal /etc/passwd
+sudo groupmod -n nvidal nuria
+id nvidal
+ls -l /home
+ls -l /home/nvidal</code></pre>
+<figure>
+  <img src="../img/sprint2/usuaris-n7-usermod.png" alt="usermod -l: nuria passa a nvidal" style="max-width:100%;height:auto;">
+  <figcaption>usermod -l: nuria passa a nvidal</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-n7-groupmod.png" alt="groupmod -n i comprovació a /home" style="max-width:100%;height:auto;">
+  <figcaption>groupmod -n i comprovació a /home</figcaption>
+</figure>
+
+<h3>Nivell 8. Fi de les pràctiques · esborrar usuaris i grups</h3>
+<h4>Esborrar l'usuari laia</h4>
+<p>La carpeta de <code>laia</code> es conserva i passa a mostrar el UID 1001, perquè ja no hi ha cap usuari amb aquest nom.</p>
+<pre><code>sudo userdel laia
+ls -l /home
+getent passwd nvidal pau marc
+getent group programadors artistes testers</code></pre>
+<figure>
+  <img src="../img/sprint2/usuaris-n8-userdel.png" alt="userdel laia i llistat de /home" style="max-width:100%;height:auto;">
+  <figcaption>userdel laia i llistat de /home</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-n8-getent.png" alt="Usuaris i grups restants" style="max-width:100%;height:auto;">
+  <figcaption>Usuaris i grups restants</figcaption>
 </figure>
 
 <p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
 
-<!-- ======================================================= -->
-<!-- APARTAT 3 · GESTIÓ DE PROCESSOS                         -->
-<!-- ======================================================= -->
 <h2 id="apartat3">3. Gestió de processos</h2>
-<p>
-  Escenari: el servidor va lent i cal investigar quins processos hi ha, qui consumeix recursos,
-  prioritzar una descàrrega i aturar els processos intrusos.
-</p>
+<p>Pràctica per nivells: observar, filtrar, controlar, prioritzar i matar processos a Ubuntu.</p>
 
-<h3>Nivell 0 · Preparar el cas</h3>
-<p>Es preparen els scripts de la missió i s'executa <code>sospitosos.sh</code>, que llança els processos sospitosos.</p>
+<h3>Nivell 0. Preparar el cas</h3>
+<h4>Executar l'script sospitós</h4>
+<p>A la carpeta <code>~/missio</code> hi ha els scripts de la pràctica; <code>sospitosos.sh</code> posa en marxa els processos intrusos.</p>
+<pre><code>ls -l
+./sospitosos.sh</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-01-preparar-cas.png" alt="Scripts de la missió i execució de sospitosos.sh">
-  <figcaption>Scripts: <code>backup_nocturn</code>, <code>descarrega.sh</code>, <code>espia</code>, <code>minador</code>, <code>sospitosos.sh</code>.</figcaption>
-</figure>
-
-<h3>Nivell 1 · Reconeixement: veure els processos</h3>
-<p>
-  <code>pstree -p $USER</code> mostra l'arbre de processos amb els PID. Entre els processos
-  del sistema apareixen <code>backup_nocturn</code>, <code>espia</code> i dos <code>minador</code>.
-</p>
-<figure>
-  <img src="../img/sprint2/processos-02-pstree-sospitosos.png" alt="pstree amb els processos sospitosos">
-  <figcaption>Processos sospitosos dins l'arbre (retalla aquesta part de la captura).</figcaption>
+  <img src="../img/sprint2/processos-n0-preparacio.png" alt="Contingut de ~/missio i execució de sospitosos.sh" style="max-width:100%;height:auto;">
+  <figcaption>Contingut de ~/missio i execució de sospitosos.sh</figcaption>
 </figure>
 
-<h3>Nivell 2 · Qui consumeix més?</h3>
-<p>Amb <code>top</code> es veu que els dos <code>minador</code> consumeixen un 50 % de CPU cadascun.</p>
+<h3>Nivell 1. Reconeixement · veure els processos</h3>
+<h4>Arbre de processos</h4>
+<p>L'arbre és molt llarg: la sortida de <code>pstree</code> està dividida en 7 trossos (desplaça't cap a la dreta).</p>
+<pre><code>pstree -p $USER</code></pre>
+
+<div style="display:flex;gap:8px;overflow-x:auto;align-items:flex-start;">
+  <img src="../img/sprint2/processos-n1-pstree-1.png" alt="Arbre de processos (pstree), part 1 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-2.png" alt="Arbre de processos (pstree), part 2 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-3.png" alt="Arbre de processos (pstree), part 3 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-4.png" alt="Arbre de processos (pstree), part 4 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-5.png" alt="Arbre de processos (pstree), part 5 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-6.png" alt="Arbre de processos (pstree), part 6 de 7" style="height:auto;">
+  <img src="../img/sprint2/processos-n1-pstree-7.png" alt="Arbre de processos (pstree), part 7 de 7" style="height:auto;">
+</div>
+
+<h3>Nivell 2. Qui consumeix més?</h3>
+<h4>Processos que més CPU consumeixen</h4>
+<p>Els dos processos <code>minador</code> consumeixen un 50 % de CPU cadascun.</p>
+<pre><code>top</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-03-top.png" alt="top amb minador al capdamunt">
-  <figcaption>Els processos <code>minador</code> (PID 10815 i 10816) són els que més CPU gasten.</figcaption>
+  <img src="../img/sprint2/processos-n2-top.png" alt="top: els processos minador al capdamunt" style="max-width:100%;height:auto;">
+  <figcaption>top: els processos minador al capdamunt</figcaption>
 </figure>
 
-<h3>Nivell 3 · Interrogatori: filtrar amb ps</h3>
-<p>
-  <code>pgrep</code> localitza els PID pel nom i <code>ps -o</code> mostra només les columnes útils
-  (PID, pare, usuari, estat, temps, %CPU).
-</p>
+<h3>Nivell 3. Interrogatori · filtrar amb ps</h3>
+<h4>Filtrar els processos sospitosos</h4>
+<pre><code>pgrep -l 'minador|espia|backup'
+ps -o pid,ppid,user,stat,etime,%cpu,comm -C minador,espia,backup_nocturn
+ps -o pid,comm -p 1520</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-04-pgrep-ps.png" alt="pgrep i ps filtrats">
-  <figcaption>Els minadors estan en estat <code>R</code> (executant) i els altres dos en <code>S</code> (dormint).</figcaption>
+  <img src="../img/sprint2/processos-n3-ps.png" alt="Filtrat amb pgrep i ps" style="max-width:100%;height:auto;">
+  <figcaption>Filtrat amb pgrep i ps</figcaption>
 </figure>
 
-<h3>Nivell 4 · La descàrrega urgent: primer i segon pla</h3>
-<p>
-  S'executa <code>descarrega.sh</code> en primer pla, s'atura amb <kbd>Ctrl+Z</kbd>, es llista amb
-  <code>jobs -l</code> i es passa a segon pla amb <code>bg</code> (o es recupera amb <code>fg</code>).
-</p>
+<h3>Nivell 4. La descàrrega urgent · primer i segon pla</h3>
+<h4>Aturar i reprendre la descàrrega</h4>
+<p><code>Ctrl+Z</code> atura el procés, <code>bg</code> el reprèn en segon pla i <code>fg</code> el torna al primer pla.</p>
+<pre><code>cd missio
+./descarrega.sh
+# Ctrl+Z
+jobs -l
+bg %1
+fg %1
+# Ctrl+Z
+bg %1
+watch -n 1 cat progres.txt</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-05-jobs-bg-fg.png" alt="Control de tasques amb jobs, bg i fg">
-  <figcaption><kbd>Ctrl+Z</kbd>, <code>jobs -l</code>, <code>bg %1</code> i <code>fg %1</code>.</figcaption>
+  <img src="../img/sprint2/processos-n4-jobs.png" alt="Control de tasques amb jobs, bg i fg" style="max-width:100%;height:auto;">
+  <figcaption>Control de tasques amb jobs, bg i fg</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/processos-06-progres.png" alt="Progrés de la descàrrega">
-  <figcaption>Es pot seguir el progrés amb <code>watch cat progres.txt</code>.</figcaption>
-</figure>
-
-<h3>Nivell 5 · Prioritat a la descàrrega</h3>
-<p>
-  <code>renice -n -10</code> dona més prioritat a un procés. Pujar la prioritat (valor negatiu) requereix
-  <strong>permisos d'administrador</strong>: sense <code>sudo</code> dona «Permiso denegado».
-</p>
-<figure>
-  <img src="../img/sprint2/processos-07-renice.png" alt="renice sense i amb sudo">
-  <figcaption>Error sense <code>sudo</code> i èxit amb <code>sudo</code>.</figcaption>
-</figure>
-<figure>
-  <img src="../img/sprint2/processos-08-top-prioritats.png" alt="top filtrat per PID">
-  <figcaption><code>top -p</code> filtrat als processos de la missió.</figcaption>
+  <img src="../img/sprint2/processos-n4-progres.png" alt="Progrés de la descàrrega: 74 %" style="max-width:100%;height:auto;">
+  <figcaption>Progrés de la descàrrega: 74 %</figcaption>
 </figure>
 
-<h3>Nivell 6 · Neutralitzar els intrusos</h3>
-<ul>
-  <li><code>minador</code>: <code>kill</code> (SIGTERM) l'atura.</li>
-  <li><code>espia</code>: ignora SIGTERM; cal <code>kill -9</code> (SIGKILL).</li>
-  <li><code>backup_nocturn</code>: és legítim, així que només es pausa amb <code>kill -STOP</code> i es reprèn amb <code>kill -CONT</code>.</li>
-</ul>
+<h3>Nivell 5. Prioritat a la descàrrega</h3>
+<h4>Pujar la prioritat</h4>
+<p>Per donar més prioritat (valor de <em>nice</em> negatiu) calen permisos de superusuari.</p>
+<pre><code>renice -n -10 -p $(pgrep descarrega)
+sudo renice -n -10 -p $(pgrep descarrega)
+top -p $(pgrep -d, 'minador|descarrega')</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-09-kill.png" alt="Senyals kill sobre els processos">
-  <figcaption>El procés <code>backup_nocturn</code> passa a estat <code>T</code> (aturat) i torna a <code>S</code>.</figcaption>
+  <img src="../img/sprint2/processos-n5-renice.png" alt="renice sense permisos (denegat) i amb sudo" style="max-width:100%;height:auto;">
+  <figcaption>renice sense permisos (denegat) i amb sudo</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/processos-n5-top.png" alt="top amb els processos seleccionats" style="max-width:100%;height:auto;">
+  <figcaption>top amb els processos seleccionats</figcaption>
 </figure>
 
-<h3>Nivell 7 · Que la descàrrega no es perdi</h3>
-<p>
-  La descàrrega s'executa de manera que no depengui del terminal: el seu pare passa a ser
-  <code>systemd</code>, de manera que es completa encara que es tanqui la sessió.
-</p>
+<h3>Nivell 6. Neutralitzar els intrusos</h3>
+<h4>Matar i aturar processos</h4>
+<p><code>kill</code> envia SIGTERM; si el procés no hi fa cas cal <code>kill -9</code> (SIGKILL). <code>-STOP</code> i <code>-CONT</code> aturen i reprenen un procés sense matar-lo.</p>
+<pre><code>pgrep -l minador
+kill 10815 10816
+pgrep -l espia
+kill 10818
+kill -9 10818
+pgrep -l backup
+kill -STOP 10817
+ps -o pid,stat,comm -p 10817
+kill -CONT 10817
+ps -o pid,stat,comm -p 10817</code></pre>
 <figure>
-  <img src="../img/sprint2/processos-10-descarrega-completada.png" alt="Descàrrega completada">
-  <figcaption>La descàrrega de <code>ubuntu.iso</code> es completa.</figcaption>
+  <img src="../img/sprint2/processos-n6-kill.png" alt="Neutralització dels processos intrusos" style="max-width:100%;height:auto;">
+  <figcaption>Neutralització dels processos intrusos</figcaption>
+</figure>
+
+<h3>Nivell 7. Que la descàrrega no es perdi</h3>
+<h4>Descàrrega completada</h4>
+<p>La descàrrega acaba correctament i <code>pstree</code> mostra que depèn de <code>systemd</code>, no de la terminal.</p>
+<pre><code>watch -n 1 cat progres.txt
+pstree -ps $(pgrep descarrega)</code></pre>
+<figure>
+  <img src="../img/sprint2/processos-n7-progres.png" alt="Descàrrega completada" style="max-width:100%;height:auto;">
+  <figcaption>Descàrrega completada</figcaption>
 </figure>
 <figure>
-  <img src="../img/sprint2/processos-11-pstree-descarrega.png" alt="pstree de descarrega.sh">
-  <figcaption><code>descarrega.sh</code> penja de <code>systemd</code>, no del terminal.</figcaption>
+  <img src="../img/sprint2/processos-n7-pstree.png" alt="pstree -ps de descarrega.sh" style="max-width:100%;height:auto;">
+  <figcaption>pstree -ps de descarrega.sh</figcaption>
 </figure>
 
 <p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
 
-<footer>
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">
-    <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència CC BY-NC-SA 4.0">
-  </a>
-  Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">CC BY-NC-SA 4.0</a>
-  <p>Autor/a: <strong>Iker Garcia</strong> · Sistemes Operatius (ISOPJ1)</p>
-</footer>
-
-</body>
-</html>
