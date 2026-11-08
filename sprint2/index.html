@@ -1,74 +1,429 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 2 · Gestió de programari i usuaris</title>
-<link rel="stylesheet" href="../css/estils.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprint 2 · Gestió de programari i usuaris</title>
+  <!-- IMPORTANT: copia aquí el <link rel="stylesheet"> i l'estructura de capçalera/peu
+       que ja tens al teu sprint2/index.html actual. Només cal substituir el contingut. -->
+  <style>
+    /* Estil mínim per a les captures (pots esborrar-ho si el teu CSS ja ho cobreix) */
+    figure { margin: 1rem 0; }
+    figure img { max-width: 100%; height: auto; border-radius: 6px; }
+    figcaption { font-size: .9rem; color: #555; margin-top: .3rem; }
+  </style>
 </head>
 <body>
 
-<header class="hero">
-  <nav class="hero-nav">
-    <a href="../index.html">Portada</a>
-    <a href="../sprints.html">Índex de sprints</a>
-    <a href="https://github.com/" target="_blank" rel="noopener">Codi a GitHub ↗</a>
-  </nav>
-  <div class="hero-titol">
-    <p class="miguetes"><a href="../index.html">Portada</a> / <a href="../sprints.html">Índex de sprints</a> / Sprint 2</p>
-    <h1>Sprint 2 · Gestió de programari i usuaris</h1>
-    <p class="subtitol">Índex d'apartats d'aquest sprint</p>
-  </div>
-</header>
+<nav>
+  <a href="../index.html">Portada</a> /
+  <a href="../sprints.html">Índex de sprints</a> / Sprint 2
+</nav>
 
-<main class="contenidor">
-  <section class="panell">
-    <a id="index-apartats"></a>
-    <table class="taula-apartats">
-      <thead>
-        <tr><th>#</th><th>Apartat</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td><a href="#apartat1">Gestors de paquets</a></td></tr>
-        <tr><td>2</td><td><a href="#apartat2">Permisos i propietaris d'arxius</a></td></tr>
-      </tbody>
-    </table>
+<h1 id="index-apartats">Sprint 2 · Gestió de programari i usuaris</h1>
+<p>Índex d'apartats d'aquest sprint</p>
 
-    <article class="apartat" id="apartat1">
-      <h2>1. Gestors de paquets</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. El gestor de
-         paquets permet <strong>instal·lar, actualitzar i eliminar</strong>
-         programari de manera controlada.</p>
-      <ul>
-        <li>Actualitzar la llista de paquets disponibles.</li>
-        <li>Instal·lar un paquet nou.</li>
-        <li>Eliminar un paquet que ja no es fa servir.</li>
-      </ul>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat2">
-      <h2>2. Permisos i propietaris d'arxius</h2>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-         ut aliquip ex ea commodo consequat. Cada arxiu té un
-         <strong>propietari, un grup i uns permisos</strong> que en determinen
-         l'accés.</p>
-      <img src="../img/exemple.svg" alt="Exemple de captura de pantalla dels permisos d'un arxiu">
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-         dolore eu fugiat nulla pariatur.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-  </section>
-</main>
+<table>
+  <thead><tr><th>#</th><th>Apartat</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><a href="#apartat1">Tipus de formateig i recuperació de dades</a></td></tr>
+    <tr><td>2</td><td><a href="#apartat2">Gestió d'usuaris i grups</a></td></tr>
+    <tr><td>3</td><td><a href="#apartat3">Gestió de processos</a></td></tr>
+  </tbody>
+</table>
 
-<footer class="peu">
-  <p class="peu-llicencia">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">
-      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència Creative Commons Reconeixement-NoComercial-CompartirIgual 4.0" width="88" height="31">
-    </a>
-    <span>Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a></span>
-  </p>
-  <p class="autoria">Autor/a: <strong>Iker Garcia</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
+<!-- ======================================================= -->
+<!-- APARTAT 1 · TIPUS DE FORMATEIG                          -->
+<!-- ======================================================= -->
+<h2 id="apartat1">1. Tipus de formateig i recuperació de dades</h2>
+<p>
+  En aquest apartat es comprova la diferència entre un <strong>formateig d'alt nivell</strong>
+  (ràpid) i un <strong>esborrat de baix nivell</strong> (omplir de zeros). Es fa servir un
+  disc virtual (un fitxer <code>disc.img</code>) i l'eina <strong>PhotoRec</strong> per
+  intentar recuperar els fitxers després de cada esborrat.
+</p>
+
+<h3>1.1 Preparació de l'entorn</h3>
+<p>Primer s'instal·la el paquet <code>testdisk</code>, que inclou PhotoRec.</p>
+<figure>
+  <img src="../img/sprint2/format-01-instalar-testdisk.png" alt="Instal·lació de testdisk amb apt">
+  <figcaption>Instal·lació de <code>testdisk</code> (<code>sudo apt install testdisk</code>).</figcaption>
+</figure>
+
+<p>Es crea la carpeta de treball <code>~/practica</code> i s'hi entra.</p>
+<figure>
+  <img src="../img/sprint2/format-02-carpeta-practica.png" alt="Creació de la carpeta practica">
+  <figcaption><code>mkdir -p ~/practica</code>, <code>cd ~/practica</code> i <code>pwd</code> per comprovar la ruta.</figcaption>
+</figure>
+
+<p>Es posen tres fitxers de prova de tipus diferent: un PDF, una foto JPG i un fitxer de text.</p>
+<figure>
+  <img src="../img/sprint2/format-03-fitxers-prova.png" alt="Fitxers de prova a la carpeta practica">
+  <figcaption>Fitxers de prova: <code>apunts.pdf</code>, <code>foto.jpg</code> i <code>notes.txt</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-04-notes-ls.png" alt="Contingut de notes.txt i ls -l">
+  <figcaption>Amb <code>echo</code> s'escriu una frase a <code>notes.txt</code> i amb <code>ls -l</code> es comproven les mides.</figcaption>
+</figure>
+
+<h3>1.2 Crear el disc virtual</h3>
+<p>Amb <code>dd</code> es crea un fitxer de 200 MB ple de zeros que farà de disc.</p>
+<figure>
+  <img src="../img/sprint2/format-05-dd-crear-disc.png" alt="Creació de disc.img amb dd">
+  <figcaption><code>dd if=/dev/zero of=disc.img bs=1M count=200</code></figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-06-ls-disc.png" alt="Comprovació de disc.img">
+  <figcaption>Es comprova que <code>disc.img</code> existeix i fa 200 MB.</figcaption>
+</figure>
+
+<h3>1.3 Formatar, muntar i desar els fitxers</h3>
+<p>El disc es formata amb el sistema de fitxers <strong>ext4</strong> i es munta en una carpeta (<code>/mnt/prova</code>).</p>
+<figure>
+  <img src="../img/sprint2/format-07-mkfs-ext4.png" alt="mkfs.ext4 sobre disc.img">
+  <figcaption>Formateig amb <code>mkfs.ext4 disc.img</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-08-muntar.png" alt="Muntatge del disc amb loop">
+  <figcaption>Muntatge amb <code>mount -o loop</code>.</figcaption>
+</figure>
+<p>S'hi copien els tres fitxers i es comprova que hi són.</p>
+<figure>
+  <img src="../img/sprint2/format-09-copiar-fitxers.png" alt="Copia dels fitxers al disc muntat">
+  <figcaption>Fitxers dins <code>/mnt/prova</code> (la carpeta <code>lost+found</code> la crea ext4 automàticament).</figcaption>
+</figure>
+<p>
+  Abans d'esborrar res es guarda l'<strong>empremta digital (hash SHA-256)</strong> dels originals,
+  per poder demostrar després que els fitxers recuperats són idèntics. Finalment es desmunta el disc.
+</p>
+<figure>
+  <img src="../img/sprint2/format-10-sha256-originals.png" alt="Hashes SHA-256 dels originals">
+  <figcaption><code>sha256sum</code> dels originals desat a <code>originals.sha</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-11-desmuntar.png" alt="Desmuntatge del disc">
+  <figcaption><code>sudo umount /mnt/prova</code></figcaption>
+</figure>
+
+<h3>1.4 Formateig d'alt nivell (ràpid)</h3>
+<p>
+  Es torna a formatar el disc amb <code>mkfs.ext4</code>. Això només crea un sistema de fitxers nou
+  (taules d'inodes, superblocs…), però <strong>no esborra el contingut dels blocs de dades</strong>.
+</p>
+<figure>
+  <img src="../img/sprint2/format-12-mkfs-nodiscard.png" alt="Segon mkfs.ext4 amb nodiscard">
+  <figcaption><code>mkfs.ext4 -E nodiscard disc.img</code>: el sistema avisa que ja hi havia un ext4 i s'accepta.</figcaption>
+</figure>
+<p>En muntar-lo, el disc sembla buit: només hi ha <code>lost+found</code>.</p>
+<figure>
+  <img src="../img/sprint2/format-13-disc-buit.png" alt="Disc muntat sense fitxers">
+  <figcaption>El disc sembla buit, però les dades encara hi són.</figcaption>
+</figure>
+
+<h3>1.5 Recuperació amb PhotoRec</h3>
+<p>S'executa PhotoRec en mode comanda sobre la imatge del disc, buscant tots els tipus de fitxer.</p>
+<figure>
+  <img src="../img/sprint2/format-14-photorec.png" alt="Execució de PhotoRec">
+  <figcaption><code>photorec /d recup /cmd disc.img options,fileopt,everything,enable,search</code></figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-15-recuperats.png" alt="Fitxers recuperats a recup.1">
+  <figcaption>PhotoRec ha recuperat la foto i el PDF amb <strong>noms nous</strong>, més un <code>report.xml</code>.</figcaption>
+</figure>
+<p>Es comparen els hashes dels recuperats amb els dels originals: coincideixen, per tant són idèntics.</p>
+<figure>
+  <img src="../img/sprint2/format-16-comparar-hash.png" alt="Comparació de hashes">
+  <figcaption>Els hashes de la foto i del PDF són iguals als originals.</figcaption>
+</figure>
+<p>
+  El <code>notes.txt</code> no apareix, perquè els fitxers de text no tenen una capçalera
+  característica que PhotoRec pugui identificar. Tot i així, la frase continua al disc i es troba
+  amb <code>strings</code> + <code>grep</code>:
+</p>
+<figure>
+  <img src="../img/sprint2/format-17-strings-pizza.png" alt="strings trobant el text">
+  <figcaption><code>strings -e S disc.img | grep pizza</code> localitza el text.</figcaption>
+</figure>
+
+<h3>1.6 Esborrat de baix nivell (zeros)</h3>
+<p>Ara se sobreescriu tot el disc amb zeros i es torna a provar de recuperar.</p>
+<figure>
+  <img src="../img/sprint2/format-18-dd-zeros.png" alt="Disc omplert de zeros">
+  <figcaption><code>dd if=/dev/zero of=disc.img bs=1M count=200 conv=notrunc</code></figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-19-photorec-zeros.png" alt="PhotoRec sense resultats">
+  <figcaption>No es crea cap carpeta <code>recup_zeros.1</code>: no hi ha res a recuperar.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/format-20-strings-buit.png" alt="strings sense resultats">
+  <figcaption>Ni tan sols <code>strings</code> troba ja el text: les dades s'han destruït.</figcaption>
+</figure>
+
+<h3>1.7 Preguntes de reflexió</h3>
+<ol>
+  <li>
+    <strong>Després de la part 3, el disc semblava buit. On eren realment els fitxers?</strong><br>
+    Encara eren als blocs de dades del disc. El formateig ràpid només va esborrar l'estructura
+    que permet localitzar-los (taules d'inodes), però no les dades.
+  </li>
+  <li>
+    <strong>Per què els fitxers recuperats tenen noms diferents?</strong><br>
+    Els noms es guarden a l'estructura del sistema de fitxers, que s'ha esborrat. PhotoRec
+    recupera pel contingut i assigna noms nous.
+  </li>
+  <li>
+    <strong>Com es demostra que la foto recuperada és idèntica?</strong><br>
+    Comparant el hash SHA-256 de la foto original i de la recuperada: si coincideix, són idèntiques bit a bit.
+  </li>
+  <li>
+    <strong>Per què PhotoRec troba la foto i el PDF, però no <code>notes.txt</code>? Com es troba igualment?</strong><br>
+    PhotoRec identifica fitxers per signatures (capçaleres) pròpies de cada format. Un fitxer de text
+    pla no en té. Es va trobar amb <code>strings</code> i <code>grep</code>, que busquen text llegible a tot el disc.
+  </li>
+  <li>
+    <strong>Quin nivell de formateig a la part 3 i quin a la part 5?</strong><br>
+    A la part 3, un formateig d'alt nivell (ràpid), que no toca les dades. A la part 5, un esborrat
+    de baix nivell (sobreescriure amb zeros), que destrueix les dades.
+  </li>
+  <li>
+    <strong>Si vols vendre un USB amb fotos personals, quin formateig faries?</strong><br>
+    Un esborrat de baix nivell (sobreescriure tot el dispositiu), perquè un formateig ràpid deixa les
+    fotos recuperables i podria posar en risc la privacitat.
+  </li>
+</ol>
+
+<p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+
+<!-- ======================================================= -->
+<!-- APARTAT 2 · GESTIÓ D'USUARIS                            -->
+<!-- ======================================================= -->
+<h2 id="apartat2">2. Gestió d'usuaris i grups</h2>
+<p>
+  Pràctica per nivells amb les ordres d'administració d'usuaris i grups d'Ubuntu: consultar,
+  crear, modificar, bloquejar i esborrar.
+</p>
+
+<h3>Nivell 0 · Conèixer el sistema</h3>
+<p><code>id</code> mostra l'UID, el grup principal i tots els grups de l'usuari.</p>
+<figure>
+  <img src="../img/sprint2/usuaris-01-id.png" alt="Sortida de id">
+  <figcaption>UID 1000, grup principal <code>iker</code>, i membre de <code>sudo</code> entre d'altres.</figcaption>
+</figure>
+<p>
+  La línia de l'usuari a <code>/etc/passwd</code> conté: nom, UID, GID, nom complet, carpeta personal i shell.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-02-passwd.png" alt="Línia de l'usuari a /etc/passwd">
+  <figcaption><code>grep $USER /etc/passwd</code></figcaption>
+</figure>
+<p>
+  <code>/etc/shadow</code> guarda els hashes de les contrasenyes i només el pot llegir root: sense
+  permisos dona «Permission denied» i amb <code>sudo</code> es pot consultar.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-03-shadow.png" alt="Lectura de /etc/shadow sense i amb sudo">
+  <figcaption>Accés denegat sense <code>sudo</code> i permès amb <code>sudo</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-04-grup-sudo.png" alt="Membres del grup sudo">
+  <figcaption><code>getent group sudo</code>: només <code>iker</code> és administrador.</figcaption>
+</figure>
+
+<h3>Nivell 1 · Contractacions: crear usuaris</h3>
+<p>Es creen quatre usuaris (nuria, pau, marc i laia), cadascun amb la seva carpeta a <code>/home</code>.</p>
+<figure>
+  <img src="../img/sprint2/usuaris-05-crear-usuaris.png" alt="Usuaris creats i carpetes a /home">
+  <figcaption><code>getent passwd</code> i <code>ls /home</code> confirmen la creació.</figcaption>
+</figure>
+
+<h3>Nivell 2 · Primer dia: iniciar sessió</h3>
+<p>Amb <code>su - nuria</code> s'inicia sessió com a nuria, es comprova amb <code>whoami</code> i <code>pwd</code>, i es crea un fitxer.</p>
+<figure>
+  <img src="../img/sprint2/usuaris-06-su-nuria.png" alt="Sessió com a nuria">
+  <figcaption>El fitxer <code>primer_dia.txt</code> pertany a nuria. (Un primer <code>ls-l</code> sense espai va fallar.)</figcaption>
+</figure>
+
+<h3>Nivell 3 · Departaments: crear i esborrar grups</h3>
+<p>
+  Es creen els grups dels departaments amb <code>groupadd</code> i <code>addgroup</code>. En escriure
+  malament <code>progamadors</code> es va crear un grup erroni, que després es va esborrar amb
+  <code>groupdel</code> deixant només <code>programadors</code>.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-07-grups.png" alt="Creació i esborrat de grups">
+  <figcaption>Grups abans i després d'esborrar el grup mal escrit.</figcaption>
+</figure>
+
+<h3>Nivell 4 · Equips: afegir i treure usuaris dels grups</h3>
+<p>
+  <code>usermod -G</code> <strong>substitueix</strong> els grups secundaris, mentre que
+  <code>usermod -aG</code> els <strong>afegeix</strong> sense perdre els existents.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-08-usermod-grups.png" alt="Afegir nuria a grups">
+  <figcaption>Nuria acaba a <code>testers</code> i <code>programadors</code>.</figcaption>
+</figure>
+
+<h3>Nivell 5 · Canvi de departament: el grup principal</h3>
+<p>
+  El grup principal determina el grup propietari dels fitxers nous. Es comparen els fitxers creats
+  per pau abans i després del canvi.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-09-pau-abans.png" alt="Fitxer de pau abans del canvi">
+  <figcaption>Abans: <code>dibuix_abans.png</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-10-pau-despres.png" alt="Fitxer de pau després del canvi">
+  <figcaption>Després: <code>codi_despres.py</code>.</figcaption>
+</figure>
+
+<h3>Nivell 6 · El tràiler filtrat: bloquejar i desbloquejar</h3>
+<p>
+  <code>passwd -S</code> mostra l'estat del compte (<code>L</code> bloquejat, <code>P</code> amb contrasenya).
+  En bloquejar a marc, el hash a <code>/etc/shadow</code> passa a començar per <code>!</code> i no pot iniciar
+  sessió. Amb <code>passwd -u</code> es desbloqueja.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-11-bloquejar.png" alt="Bloqueig i desbloqueig de marc">
+  <figcaption>Compte bloquejat, intent de <code>su</code> fallit i compte desbloquejat.</figcaption>
+</figure>
+
+<h3>Nivell 7 · Nova norma de noms: modificar un usuari</h3>
+<p>
+  <code>usermod -l</code> canvia el nom d'usuari (nuria → nvidal) i <code>groupmod -n</code> el del seu grup.
+  L'UID es manté, per tant l'usuari conserva els seus fitxers i grups.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-12-usermod-nom.png" alt="Canvi de nom d'usuari i grup">
+  <figcaption>Nom d'usuari i grup actualitzats.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-13-ls-home.png" alt="Carpetes a /home després del canvi">
+  <figcaption><code>ls -l /home</code> amb la carpeta de l'usuari ja com a <code>nvidal</code>.</figcaption>
+</figure>
+
+<h3>Nivell 8 · Fi de les pràctiques: esborrar usuaris i grups</h3>
+<p>
+  Amb <code>userdel laia</code> s'esborra l'usuari, però <strong>no la seva carpeta</strong> (sense
+  <code>-r</code>): a <code>/home</code> queda amb propietari numèric <code>1001</code>, ja sense nom.
+</p>
+<figure>
+  <img src="../img/sprint2/usuaris-14-userdel.png" alt="userdel laia i carpeta orfe">
+  <figcaption>La carpeta de laia queda òrfena.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/usuaris-15-estat-final.png" alt="Estat final d'usuaris i grups">
+  <figcaption>Estat final d'usuaris i grups.</figcaption>
+</figure>
+
+<p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+
+<!-- ======================================================= -->
+<!-- APARTAT 3 · GESTIÓ DE PROCESSOS                         -->
+<!-- ======================================================= -->
+<h2 id="apartat3">3. Gestió de processos</h2>
+<p>
+  Escenari: el servidor va lent i cal investigar quins processos hi ha, qui consumeix recursos,
+  prioritzar una descàrrega i aturar els processos intrusos.
+</p>
+
+<h3>Nivell 0 · Preparar el cas</h3>
+<p>Es preparen els scripts de la missió i s'executa <code>sospitosos.sh</code>, que llança els processos sospitosos.</p>
+<figure>
+  <img src="../img/sprint2/processos-01-preparar-cas.png" alt="Scripts de la missió i execució de sospitosos.sh">
+  <figcaption>Scripts: <code>backup_nocturn</code>, <code>descarrega.sh</code>, <code>espia</code>, <code>minador</code>, <code>sospitosos.sh</code>.</figcaption>
+</figure>
+
+<h3>Nivell 1 · Reconeixement: veure els processos</h3>
+<p>
+  <code>pstree -p $USER</code> mostra l'arbre de processos amb els PID. Entre els processos
+  del sistema apareixen <code>backup_nocturn</code>, <code>espia</code> i dos <code>minador</code>.
+</p>
+<figure>
+  <img src="../img/sprint2/processos-02-pstree-sospitosos.png" alt="pstree amb els processos sospitosos">
+  <figcaption>Processos sospitosos dins l'arbre (retalla aquesta part de la captura).</figcaption>
+</figure>
+
+<h3>Nivell 2 · Qui consumeix més?</h3>
+<p>Amb <code>top</code> es veu que els dos <code>minador</code> consumeixen un 50 % de CPU cadascun.</p>
+<figure>
+  <img src="../img/sprint2/processos-03-top.png" alt="top amb minador al capdamunt">
+  <figcaption>Els processos <code>minador</code> (PID 10815 i 10816) són els que més CPU gasten.</figcaption>
+</figure>
+
+<h3>Nivell 3 · Interrogatori: filtrar amb ps</h3>
+<p>
+  <code>pgrep</code> localitza els PID pel nom i <code>ps -o</code> mostra només les columnes útils
+  (PID, pare, usuari, estat, temps, %CPU).
+</p>
+<figure>
+  <img src="../img/sprint2/processos-04-pgrep-ps.png" alt="pgrep i ps filtrats">
+  <figcaption>Els minadors estan en estat <code>R</code> (executant) i els altres dos en <code>S</code> (dormint).</figcaption>
+</figure>
+
+<h3>Nivell 4 · La descàrrega urgent: primer i segon pla</h3>
+<p>
+  S'executa <code>descarrega.sh</code> en primer pla, s'atura amb <kbd>Ctrl+Z</kbd>, es llista amb
+  <code>jobs -l</code> i es passa a segon pla amb <code>bg</code> (o es recupera amb <code>fg</code>).
+</p>
+<figure>
+  <img src="../img/sprint2/processos-05-jobs-bg-fg.png" alt="Control de tasques amb jobs, bg i fg">
+  <figcaption><kbd>Ctrl+Z</kbd>, <code>jobs -l</code>, <code>bg %1</code> i <code>fg %1</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/processos-06-progres.png" alt="Progrés de la descàrrega">
+  <figcaption>Es pot seguir el progrés amb <code>watch cat progres.txt</code>.</figcaption>
+</figure>
+
+<h3>Nivell 5 · Prioritat a la descàrrega</h3>
+<p>
+  <code>renice -n -10</code> dona més prioritat a un procés. Pujar la prioritat (valor negatiu) requereix
+  <strong>permisos d'administrador</strong>: sense <code>sudo</code> dona «Permiso denegado».
+</p>
+<figure>
+  <img src="../img/sprint2/processos-07-renice.png" alt="renice sense i amb sudo">
+  <figcaption>Error sense <code>sudo</code> i èxit amb <code>sudo</code>.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/processos-08-top-prioritats.png" alt="top filtrat per PID">
+  <figcaption><code>top -p</code> filtrat als processos de la missió.</figcaption>
+</figure>
+
+<h3>Nivell 6 · Neutralitzar els intrusos</h3>
+<ul>
+  <li><code>minador</code>: <code>kill</code> (SIGTERM) l'atura.</li>
+  <li><code>espia</code>: ignora SIGTERM; cal <code>kill -9</code> (SIGKILL).</li>
+  <li><code>backup_nocturn</code>: és legítim, així que només es pausa amb <code>kill -STOP</code> i es reprèn amb <code>kill -CONT</code>.</li>
+</ul>
+<figure>
+  <img src="../img/sprint2/processos-09-kill.png" alt="Senyals kill sobre els processos">
+  <figcaption>El procés <code>backup_nocturn</code> passa a estat <code>T</code> (aturat) i torna a <code>S</code>.</figcaption>
+</figure>
+
+<h3>Nivell 7 · Que la descàrrega no es perdi</h3>
+<p>
+  La descàrrega s'executa de manera que no depengui del terminal: el seu pare passa a ser
+  <code>systemd</code>, de manera que es completa encara que es tanqui la sessió.
+</p>
+<figure>
+  <img src="../img/sprint2/processos-10-descarrega-completada.png" alt="Descàrrega completada">
+  <figcaption>La descàrrega de <code>ubuntu.iso</code> es completa.</figcaption>
+</figure>
+<figure>
+  <img src="../img/sprint2/processos-11-pstree-descarrega.png" alt="pstree de descarrega.sh">
+  <figcaption><code>descarrega.sh</code> penja de <code>systemd</code>, no del terminal.</figcaption>
+</figure>
+
+<p><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+
+<footer>
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">
+    <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència CC BY-NC-SA 4.0">
+  </a>
+  Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">CC BY-NC-SA 4.0</a>
+  <p>Autor/a: <strong>Iker Garcia</strong> · Sistemes Operatius (ISOPJ1)</p>
 </footer>
 
 </body>
